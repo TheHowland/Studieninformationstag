@@ -1,7 +1,3 @@
-from lcapyInskale import Circuit
-cct = Circuit("04_resistor_mixed_simple.txt")
-
-
 def parallel(*args):
     resistance = 0
     for arg in args:
@@ -22,48 +18,43 @@ def current(R, V):
 def voltage(R, I):
     return R * I
 
-R1 = 10
-R2 = 15
-R3 = 30
+R1 = 100
+R2 = 100
+R3 = 100
 R4 = 100
-R5 = 150
 
-Rs1 = series(R1, R2, R3)
-Rs2 = parallel(R4, R5)
+Rs1 = series(R1, R2)
+Rs2 = parallel(R3, R4)
 R_total = series(Rs1, Rs2)
 
 U_total = 10
 I_total = current(R_total, U_total)
 
-Us1 = voltage(Rs1, I_total)
 Is1 = I_total
+Us1 = voltage(Rs1, Is1)
 
-Us2 = voltage(Rs2, I_total)
 Is2 = I_total
+Us2 = voltage(Rs2, Is2)
 
-U1 = voltage(R1, I_total)
 I1 = I_total
+U1 = voltage(R1, I1)
 
-U2 = voltage(R2, I_total)
 I2 = I_total
+U2 = voltage(R2, I2)
 
-U3 = voltage(R3, I_total)
-I3 = I_total
+U3 = Us2
+I3 = current(R3, Us2)
 
 U4 = Us2
 I4 = current(R4, Us2)
 
-U5 = Us2
-I5 = current(R5, Us2)
-
-print(f"R1:\t\t\t {R1:.4f} Ohm, U1: {U1:.4f} V, I1: {I1:.4f} A")
-print(f"R2:\t\t\t {R2:.4f} Ohm, U2: {U2:.4f} V, I2: {I2:.4f} A")
-print(f"R3:\t\t\t {R3:.4f} Ohm, U3: {U3:.4f} V, I3: {I3:.4f} A")
-print(f"R4:\t\t\t {R4:.4f} Ohm, U4: {U4:.4f} V, I4: {I4:.4f} A")
-print(f"R5:\t\t\t {R5:.4f} Ohm, U5: {U5:.4f} V, I5: {I5:.4f} A")
-print(f"Rs1:\t\t {Rs1:.4f} Ohm, Us1: {Us1:.4f} V, Is1: {Is1:.4f} A")
-print(f"Rs2:\t\t {Rs2:.4f} Ohm, Us2: {Us2:.4f} V, Is2: {Is2:.4f} A")
-print(f"R_total:\t {R_total:.4f} Ohm, U_total: {U_total:.4f} V, I_total: {I_total:.4f} A")
+print(f"R1:\t\t {R1:>8.4f} Ohm,\t U1: {U1:>10.4f}\t V, I1: {I1:>10.4f} A")
+print(f"R2:\t\t {R2:>8.4f} Ohm,\t U2: {U2:>10.4f}\t V, I2: {I2:>10.4f} A")
+print(f"R3:\t\t {R3:>8.4f} Ohm,\t U3: {U3:>10.4f}\t V, I3: {I3:>10.4f} A")
+print(f"R4:\t\t {R4:>8.4f} Ohm,\t U4: {U4:>10.4f}\t V, I4: {I4:>10.4f} A")
+print(f"Rs1:\t {Rs1:>8.4f} Ohm,\t Us1: {Us1:>9.4f}\t V, Is1: {Is1:9.4f} A")
+print(f"Rs2:\t {Rs2:>8.4f} Ohm,\t Us2: {Us2:>9.4f}\t V, Is2: {Is2:>9.4f} A")
+print(f"R_tot:\t {R_total:8.4f} Ohm,\t U_tot: {U_total:7.4f}  V, I_tot: {I_total:7.4f} A")
 pass
 
 
